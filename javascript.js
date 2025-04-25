@@ -12,5 +12,5 @@ for (j=0; j < totalContainers; j++) {
     gridElement.className = ("number-"+i);
     gridContainer.appendChild(gridElement);
     i++;
-    console.log(gridElement);
+    
 }
