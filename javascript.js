@@ -1,16 +1,13 @@
-const gridContainer = document.querySelector(".grid-container");
+// script.js
+const container = document.querySelector('.grid-container');
+// read --cols from computed style, default to 16 if not set
+const cols = parseInt(
+  getComputedStyle(container).getPropertyValue('--cols'),
+  10
+) || 16;
 
-const totalContainers = (16 * 16);
-
-
-
-let i = "0"
-
-for (j=0; j < totalContainers; j++) {
-    let gridElement = document.createElement("div");
-    gridElement.textContent = ("X");
-    gridElement.className = ("number-"+i);
-    gridContainer.appendChild(gridElement);
-    i++;
-    
+// generate cols × cols cells
+for (let i = 0; i < cols * cols; i++) {
+  const cell = document.createElement('div');
+  container.appendChild(cell);
 }

@@ -1,10 +1,19 @@
+/* style.css */
 .grid-container {
     display: flex;
-    flex-direction: row;
     flex-wrap: wrap;
-    width: 250px
-}
-
-.grid-container > div[class^="number-"] {
-    border: 2px solid black;
-}
+    /* optional: fix overall size or let it be fluid */
+    width: 100%;
+    max-width: 80vmin;
+  }
+  
+  /* every direct child is a flex item */
+  .grid-container > div {
+    /* NB: calc() lets you do math in CSS values */  
+    /* flex-basis sets the starting size before growing/shrinking */  
+    flex: 0 0 calc(100% / var(--cols));        /* :contentReference[oaicite:0]{index=0} :contentReference[oaicite:1]{index=1} */
+    aspect-ratio: 1 / 1;                       /* :contentReference[oaicite:2]{index=2} */
+    border: 1px solid #000;
+    box-sizing: border-box;
+  }
+  
