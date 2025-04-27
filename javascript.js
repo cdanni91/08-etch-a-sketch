@@ -1,29 +1,49 @@
-// script.js
 const container = document.querySelector('.grid-container');
-// read --cols from computed style, default to 16 if not set
-const cols = parseInt(
-  getComputedStyle(container).getPropertyValue('--cols'),
-  10
-) || 16;
+const button = document.querySelector('.change-grid');
+const hoverDelay = 2000; // 2 seconds
 
+// 1) Build the grid
+function createGrid(size) {
+  // Clear out old cells
+  container.innerHTML = '';                                              // :contentReference[oaicite:0]{index=0}
 
-const hoverDelay = 2000; // Tiempo en milisegundos (2 segundos)
+  // Update CSS variable so flex-basis calc() works
+  container.style.setProperty('--cols', size);                            // :contentReference[oaicite:1]{index=1}
 
-
-
-// generate cols × cols cells
-for (let i = 0; i < cols * cols; i++) {
-  let cell = document.createElement('div');
-  container.appendChild(cell);
-  /* cell.addEventListener("mouseover", () => {
-    cell.style.background = "red";
+  // Add size × size cells
+  for (let i = 0; i < size * size; i++) {
+    const cell = document.createElement('div');
+    cell.addEventListener('mouseover', () => {
+      cell.style.background = 'red';
+    });
+    cell.addEventListener('mouseout', () => {
+      setTimeout(() => {
+        cell.style.backgroundColor = '';
+      }, hoverDelay);
+    });
+    container.appendChild(cell);
   }
-); */
-  cell.addEventListener("mouseover", ()=> {
-    cell.style.background = "red";
-  })
-  cell.addEventListener("mouseout", () => {
-    setTimeout(() => {
-      cell.style.backgroundColor = "";
-    }, hoverDelay);
-  })};
+}
+
+// 2) Initial grid on page load (default 16)
+createGrid(16);
+
+// 3) Button handler to change size
+button.innerText = 'Change grid size';
+button.addEventListener('click', () => {
+  const input = prompt('Enter new grid size (e.g. 10 for 10x10):');
+  const newSize = parseInt(input, 10);
+
+  // Validate input
+  if (Number.isNaN(newSize) || newSize < 1) {
+    alert('Please enter a valid positive integer.');
+    return;
+  }
+  if (newSize > 100) {
+    alert('Please choose a size under 100 to avoid performance issues.');
+    return;
+  }
+
+  // Rebuild grid
+  createGrid(newSize);
+});
