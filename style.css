@@ -17,3 +17,12 @@
     box-sizing: border-box;
   }
   
+
+
+  .grid-container > div:hover {
+    background-color: red;
+    image-rendering: pixelated;
+    transition:  0.05s ease-in-out; /* Para una transición suave */
+  }
+
+ 

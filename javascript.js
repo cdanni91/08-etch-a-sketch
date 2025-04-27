@@ -6,8 +6,24 @@ const cols = parseInt(
   10
 ) || 16;
 
+
+const hoverDelay = 2000; // Tiempo en milisegundos (2 segundos)
+
+
+
 // generate cols × cols cells
 for (let i = 0; i < cols * cols; i++) {
-  const cell = document.createElement('div');
+  let cell = document.createElement('div');
   container.appendChild(cell);
-}
+  /* cell.addEventListener("mouseover", () => {
+    cell.style.background = "red";
+  }
+); */
+  cell.addEventListener("mouseover", ()=> {
+    cell.style.background = "red";
+  })
+  cell.addEventListener("mouseout", () => {
+    setTimeout(() => {
+      cell.style.backgroundColor = "";
+    }, hoverDelay);
+  })};
