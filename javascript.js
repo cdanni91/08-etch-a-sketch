@@ -2,6 +2,7 @@ const container = document.querySelector('.grid-container');
 const button = document.querySelector('.change-grid');
 const hoverDelay = 2000; // 2 seconds
 
+
 // 1) Build the grid
 function createGrid(size) {
   // Clear out old cells
@@ -13,9 +14,11 @@ function createGrid(size) {
   // Add size × size cells
   for (let i = 0; i < size * size; i++) {
     const cell = document.createElement('div');
-    cell.addEventListener('mouseover', () => {
-      cell.style.background = 'red';
+    
+    cell.addEventListener('mouseover', (e) => { // Recibimos el objeto del evento 'e'
+      cell.style.background = `rgb(${e.offsetX*4}, ${e.offsetY*4}, ${e.offsetY*4})`; // Aumente los valores sino se veia todo oscuro
     });
+
     cell.addEventListener('mouseout', () => {
       setTimeout(() => {
         cell.style.backgroundColor = '';
@@ -23,8 +26,7 @@ function createGrid(size) {
     });
     container.appendChild(cell);
   }
-}
-
+};
 // 2) Initial grid on page load (default 16)
 createGrid(16);
 
