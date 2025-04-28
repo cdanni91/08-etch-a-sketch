@@ -20,6 +20,5 @@
 
 /* Efecto hover con css */
   .grid-container > div:hover {
-    background-color: red;
-    transition:  0.05s ease-in-out; /* Para una transición suave */
+    opacity: 1;
   }

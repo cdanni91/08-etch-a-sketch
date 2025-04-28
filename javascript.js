@@ -1,7 +1,7 @@
 const container = document.querySelector('.grid-container');
 const button = document.querySelector('.change-grid');
 const hoverDelay = 2000; // 2 seconds
-
+let opacity = (0.1);
 
 // 1) Build the grid
 function createGrid(size) {
@@ -17,13 +17,17 @@ function createGrid(size) {
     
     cell.addEventListener('mouseover', (e) => { // Recibimos el objeto del evento 'e'
       cell.style.background = `rgb(${e.offsetX*4}, ${e.offsetY*4}, ${e.offsetY*4})`; // Aumente los valores sino se veia todo oscuro
+
     });
 
     cell.addEventListener('mouseout', () => {
       setTimeout(() => {
-        cell.style.backgroundColor = '';
+        cell.style.backgroundColor = `rgba(0,0,0,${opacity})`;
       }, hoverDelay);
+      opacity += (0.015);
     });
+    
+    
     container.appendChild(cell);
   }
 };
