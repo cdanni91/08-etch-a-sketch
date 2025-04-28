@@ -24,7 +24,7 @@ function createGrid(size) {
       setTimeout(() => {
         cell.style.backgroundColor = `rgba(0,0,0,${opacity})`;
       }, hoverDelay);
-      opacity += (0.015);
+      opacity += (0.01);
     });
     
     
